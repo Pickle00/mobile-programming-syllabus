@@ -1,0 +1,749 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 3: Designing the User Interface</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --text-color: #333;
+            --bg-color: #f5f5f5;
+            --card-bg-color: #fff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        .card {
+            background-color: var(--card-bg-color);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        h3 {
+            color: #444;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        strong {
+            font-weight: 600;
+        }
+        ol, ul {
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3a7ac0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Unit 3: Designing the User Interface</h1>
+
+        <div class="card">
+            <h2>What is an event? How many ways to handle events in android programming?</h2>
+            <img src="Screenshot From 2025-06-30 04-39-40.png" alt="Question 12">
+            <p>In Android programming, an <strong>event</strong> is an action or occurrence that happens in your application, typically triggered by user interaction (e.g., a button click, a touch on the screen, typing text) or by the system (e.g., a device rotation, a low battery warning, data arrival from a network).</p>
+            <p>Handling events means responding to these occurrences to make your application interactive and functional. Android provides several ways to handle events:</p>
+            <ol>
+                <li>
+                    <h3>Using an Anonymous Inner Class (Inline Listener):</h3>
+                    <p>This is a common way to handle events for a single view. You create an anonymous inner class that implements the appropriate listener interface (e.g., <code>View.OnClickListener</code>) and override its method.</p>
+                    <pre><code class="language-java">
+// Example (Java)
+Button myButton = findViewById(R.id.myButton);
+myButton.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        // Code to execute when the button is clicked
+        Toast.makeText(MainActivity.this, "Button Clicked!", Toast.LENGTH_SHORT).show();
+    }
+});
+                    </code></pre>
+                    <pre><code class="language-kotlin">
+// Example (Kotlin)
+val myButton: Button = findViewById(R.id.myButton)
+myButton.setOnClickListener { view ->
+    // Code to execute when the button is clicked
+    Toast.makeText(this, "Button Clicked!", Toast.LENGTH_SHORT).show()
+}
+                    </code></pre>
+                </li>
+                <li>
+                    <h3>Implementing the Listener Interface in the Activity/Fragment:</h3>
+                    <p>Your Activity or Fragment can implement the listener interface directly. This is useful when multiple views share the same event handler logic or when you want to keep the event handling logic within the Activity/Fragment class.</p>
+                    <pre><code class="language-java">
+// Example (Java)
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Button myButton = findViewById(R.id.myButton);
+        myButton.setOnClickListener(this); // 'this' refers to the Activity implementing OnClickListener
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.myButton) {
+            Toast.makeText(this, "Button Clicked!", Toast.LENGTH_SHORT).show();
+        }
+    }
+}
+                    </code></pre>
+                </li>
+                <li>
+                    <h3>Using the <code>android:onClick</code> Attribute in XML:</h3>
+                    <p>For simple click events, you can specify the method name to be called directly in the XML layout file using the <code>android:onClick</code> attribute. The method must be public, return void, and take a single <code>View</code> argument.</p>
+                    <pre><code class="language-xml">
+&lt;!-- Example (XML Layout - activity_main.xml) -->
+&lt;Button
+    android:id="@+id/myButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Click Me"
+    android:onClick="onMyButtonClick" />
+                    </code></pre>
+                </li>
+            </ol>
+        </div>
+
+        <div class="card">
+            <h2>What is the difference between android:layout_gravity and android:gravity attribute in linear layout. Create an android application that will convert distance entered into Kilometers into Meters using Table Layout.</h2>
+            <img src="Screenshot From 2025-06-30 04-40-16.png" alt="Question 13">
+            <h3>Difference between <code>android:layout_gravity</code> and <code>android:gravity</code>:</h3>
+            <ul>
+                <li>
+                    <strong><code>android:gravity</code>:</strong> This attribute is used on a <strong>ViewGroup</strong> (like LinearLayout, RelativeLayout, etc.) to control the alignment of its <strong>own content</strong> (i.e., the views *inside* it) within the ViewGroup itself. For example, if you have a LinearLayout and set <code>android:gravity="center"</code>, all child views within that LinearLayout will be centered horizontally and vertically within the LinearLayout's bounds.
+                </li>
+                <li>
+                    <strong><code>android:layout_gravity</code>:</strong> This attribute is used on a <strong>View</strong> (a child of a ViewGroup) to control how that specific View is positioned <strong>within its parent ViewGroup</strong>. For example, if you have a Button inside a LinearLayout and set <code>android:layout_gravity="center_horizontal"</code> on the Button, the Button will be centered horizontally within the LinearLayout, regardless of the LinearLayout's own gravity setting.
+                </li>
+            </ul>
+            <p>In essence:</p>
+            <ul>
+                <li><code>android:gravity</code> affects the children *within* the parent.</li>
+                <li><code>android:layout_gravity</code> affects the child *relative to* its parent.</li>
+            </ul>
+
+            <h3>Android Application: Kilometers to Meters Converter using TableLayout</h3>
+            <p>This application will take input in Kilometers and convert it to Meters, displaying the result. We will use <code>TableLayout</code> for arranging the UI elements.</p>
+
+            <h4>1. <code>activity_main.xml</code> (Layout File):</h4>
+            <pre><code class="language-xml">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:stretchColumns="1"
+    tools:context=".MainActivity">
+
+    &lt;TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        &lt;TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kilometers:"
+            android:textSize="18sp"
+            android:paddingEnd="10dp"/>
+
+        &lt;EditText
+            android:id="@+id/editTextKilometers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Kilometers"
+            android:inputType="numberDecimal"/>
+    &lt;/TableRow>
+
+    &lt;TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+        &lt;Button
+            android:id="@+id/buttonConvert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_span="2" &lt;!-- Spans across both columns -->
+            android:text="Convert to Meters"/>
+    &lt;/TableRow>
+
+    &lt;TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        &lt;TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Meters:"
+            android:textSize="18sp"
+            android:paddingEnd="10dp"/>
+
+        &lt;TextView
+            android:id="@+id/textViewMeters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0.0"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_blue_dark"/>
+    &lt;/TableRow>
+
+&lt;/TableLayout>
+            </code></pre>
+
+            <h4>2. <code>MainActivity.java</code> (Java Code):</h4>
+            <pre><code class="language-java">
+package com.example.kilometerconverter;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText editTextKilometers;
+    private Button buttonConvert;
+    private TextView textViewMeters;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        editTextKilometers = findViewById(R.id.editTextKilometers);
+        buttonConvert = findViewById(R.id.buttonConvert);
+        textViewMeters = findViewById(R.id.textViewMeters);
+
+        buttonConvert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                convertKilometersToMeters();
+            }
+        });
+    }
+
+    private void convertKilometersToMeters() {
+        String kilometersString = editTextKilometers.getText().toString().trim();
+
+        if (kilometersString.isEmpty()) {
+            Toast.makeText(this, "Please enter a value for Kilometers", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            double kilometers = Double.parseDouble(kilometersString);
+            double meters = kilometers * 1000;
+            textViewMeters.setText(String.format("%.2f", meters));
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Invalid number format", Toast.LENGTH_SHORT).show();
+        }
+    }
+}
+            </code></pre>
+        </div>
+
+        <div class="card">
+            <h2>What are important attributes used in Absolute Layout? Develop a simple calculator application with two input fields for inputting numbers and two buttons for performing multiplication and division and display the result in TextView using Absolute Layout.</h2>
+            <img src="Screenshot From 2025-06-30 04-40-01.png" alt="Question 13">
+            <h3>Important Attributes used in AbsoluteLayout:</h3>
+            <p><code>AbsoluteLayout</code> is a deprecated layout manager in Android that allows you to specify the exact X and Y coordinates (in pixels) for each child view. Due to its inflexibility and difficulty in adapting to different screen sizes and densities, it is highly discouraged for modern Android development. However, for understanding its attributes:</p>
+            <ul>
+                <li>
+                    <strong><code>android:layout_x</code>:</strong> Specifies the X-coordinate (horizontal position) of the top-left corner of the child view within the AbsoluteLayout. The value is typically in density-independent pixels (dp).
+                </li>
+                <li>
+                    <strong><code>android:layout_y</code>:</strong> Specifies the Y-coordinate (vertical position) of the top-left corner of the child view within the AbsoluteLayout. The value is typically in density-independent pixels (dp).
+                </li>
+            </ul>
+            <p><strong>Note:</strong> Using <code>AbsoluteLayout</code> is strongly discouraged. Modern Android development uses more flexible layouts like <code>ConstraintLayout</code>, <code>LinearLayout</code>, and <code>RelativeLayout</code> for responsive UI design.</p>
+
+            <h3>Simple Calculator Application using AbsoluteLayout (for demonstration purposes only):</h3>
+            <p>This calculator will perform multiplication and division on two input numbers.</p>
+
+            <h4>1. <code>activity_main.xml</code> (Layout File):</h4>
+            <pre><code class="language-xml">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    &lt;EditText
+        android:id="@+id/editTextNumber1"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_x="50dp"
+        android:layout_y="50dp"
+        android:hint="Enter Number 1"
+        android:inputType="numberDecimal"/>
+
+    &lt;EditText
+        android:id="@+id/editTextNumber2"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_x="50dp"
+        android:layout_y="120dp"
+        android:hint="Enter Number 2"
+        android:inputType="numberDecimal"/>
+
+    &lt;Button
+        android:id="@+id/buttonMultiply"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_x="50dp"
+        android:layout_y="200dp"
+        android:text="Multiply"/>
+
+    &lt;Button
+        android:id="@+id/buttonDivide"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_x="180dp"
+        android:layout_y="200dp"
+        android:text="Divide"/>
+
+    &lt;TextView
+        android:id="@+id/textViewResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="50dp"
+        android:layout_y="280dp"
+        android:text="Result: 0.0"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"/>
+
+&lt;/AbsoluteLayout>
+            </code></pre>
+
+            <h4>2. <code>MainActivity.java</code> (Java Code):</h4>
+            <pre><code class="language-java">
+package com.example.simplecalculator;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText editTextNumber1;
+    private EditText editTextNumber2;
+    private Button buttonMultiply;
+    private Button buttonDivide;
+    private TextView textViewResult;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        editTextNumber1 = findViewById(R.id.editTextNumber1);
+        editTextNumber2 = findViewById(R.id.editTextNumber2);
+        buttonMultiply = findViewById(R.id.buttonMultiply);
+        buttonDivide = findViewById(R.id.buttonDivide);
+        textViewResult = findViewById(R.id.textViewResult);
+
+        buttonMultiply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calculateResult("multiply");
+            }
+        });
+
+        buttonDivide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calculateResult("divide");
+            }
+        });
+    }
+
+    private void calculateResult(String operation) {
+        String num1Str = editTextNumber1.getText().toString().trim();
+        String num2Str = editTextNumber2.getText().toString().trim();
+
+        if (num1Str.isEmpty() || num2Str.isEmpty()) {
+            Toast.makeText(this, "Please enter both numbers", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            double num1 = Double.parseDouble(num1Str);
+            double num2 = Double.parseDouble(num2Str);
+            double result = 0;
+
+            if (operation.equals("multiply")) {
+                result = num1 * num2;
+            } else if (operation.equals("divide")) {
+                if (num2 == 0) {
+                    Toast.makeText(this, "Cannot divide by zero", Toast.LENGTH_SHORT).show();
+                    textViewResult.setText("Result: Error");
+                    return;
+                }
+                result = num1 / num2;
+            }
+            textViewResult.setText(String.format("Result: %.2f", result));
+
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Invalid number format", Toast.LENGTH_SHORT).show();
+            textViewResult.setText("Result: Error");
+        }
+    }
+}
+            </code></pre>
+        </div>
+
+        <div class="card">
+            <h2>How to create AVD's? How to use spinner in Android? Explain with a suitable example.</h2>
+            <img src="Screenshot From 2025-06-30 04-40-08.png" alt="Question 13">
+            <h3>How to Create Android Virtual Devices (AVDs):</h3>
+            <p>An Android Virtual Device (AVD) is a configuration that defines the characteristics of an Android phone, tablet, Wear OS, Android TV, or Automotive OS device that you want to simulate in the Android Emulator. Creating an AVD allows you to test your applications on various device configurations without needing a physical device.</p>
+            <p>Steps to create an AVD in Android Studio:</p>
+            <ol>
+                <li>
+                    <strong>Open AVD Manager:</strong> In Android Studio, go to <strong>Tools > Device Manager</strong> (or <strong>Tools > AVD Manager</strong> in older versions).
+                </li>
+                <li>
+                    <strong>Create Virtual Device:</strong> In the Device Manager window, click the <strong>"Create device"</strong> button (or "Create Virtual Device" in older versions).
+                </li>
+                <li>
+                    <strong>Select Hardware Profile:</strong> Choose a hardware profile for your AVD (e.g., Phone, Tablet, Wear OS, TV). You can select from predefined profiles or create a new one. Click <strong>"Next"</strong>.
+                </li>
+                <li>
+                    <strong>Select System Image:</strong> Choose a system image (Android version) for your AVD. You'll need to download one if you don't have it already. Select the recommended or desired API level. Click <strong>"Next"</strong>.
+                </li>
+                <li>
+                    <strong>Verify Configuration:</strong> Give your AVD a name and review the configuration settings (e.g., orientation, startup size, advanced settings like camera, network, performance). You can customize these settings as needed. Click <strong>"Finish"</strong>.
+                </li>
+            </ol>
+            <p>Once created, your AVD will appear in the Device Manager list. You can then launch it to run your Android applications.</p>
+
+            <h3>How to use Spinner in Android:</h3>
+            <p>A <code>Spinner</code> is a widget that provides a quick way to select one value from a set. When touched, it displays a dropdown menu with all available values, from which the user can choose one.</p>
+
+            <h4>Example: Using a Spinner to select a programming language</h4>
+
+            <h4>1. <code>activity_main.xml</code> (Layout File):</h4>
+            <pre><code class="language-xml">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal"
+    tools:context=".MainActivity">
+
+    &lt;TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select a Programming Language:"
+        android:textSize="18sp"
+        android:layout_marginBottom="10dp"/>
+
+    &lt;Spinner
+        android:id="@+id/spinnerLanguages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:minWidth="200dp"/>
+
+    &lt;TextView
+        android:id="@+id/textViewSelection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selected: None"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/holo_green_dark"/>
+
+&lt;/LinearLayout>
+            </code></pre>
+
+            <h4>2. <code>strings.xml</code> (Resource File):</h4>
+            <pre><code class="language-xml">
+&lt;resources>
+    &lt;string name="app_name">Spinner Example&lt;/string>
+
+    &lt;string-array name="programming_languages_array">
+        &lt;item>Java&lt;/item>
+        &lt;item>Kotlin&lt;/item>
+        &lt;item>Swift&lt;/item>
+        &lt;item>Python&lt;/item>
+        &lt;item>JavaScript&lt;/item>
+        &lt;item>C#&lt;/item>
+        &lt;item>Go&lt;/item>
+    &lt;/string-array>
+&lt;/resources>
+            </code></pre>
+
+            <h4>3. <code>MainActivity.java</code> (Java Code):</h4>
+            <pre><code class="language-java">
+package com.example.spinnerexample;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    private Spinner spinnerLanguages;
+    private TextView textViewSelection;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        spinnerLanguages = findViewById(R.id.spinnerLanguages);
+        textViewSelection = findViewById(R.id.textViewSelection);
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter&lt;CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.programming_languages_array, // The string array defined in strings.xml
+                android.R.layout.simple_spinner_item // Default layout for spinner items
+        );
+
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        spinnerLanguages.setAdapter(adapter);
+
+        // Set the listener for item selection
+        spinnerLanguages.setOnItemSelectedListener(this);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView&lt;?> parent, View view, int position, long id) {
+        // An item was selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(position).toString()
+        String selectedLanguage = parent.getItemAtPosition(position).toString();
+        textViewSelection.setText("Selected: " + selectedLanguage);
+        Toast.makeText(this, "You selected: " + selectedLanguage, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView&lt;?> parent) {
+        // Another interface callback
+        textViewSelection.setText("Selected: None");
+    }
+}
+            </code></pre>
+        </div>
+
+        <div class="card">
+            <h2>What is Toast? Develop an android application to create an alert dialog to input any number and then calculate the factorial of the number and display the result in Toast.</h2>
+            <img src="Screenshot From 2025-06-30 04-40-01.png" alt="Question 15">
+            <h3>What is Toast?</h3>
+            <p>A <code>Toast</code> is a small, temporary pop-up message that appears on the screen for a short period and then disappears automatically. It is primarily used to provide simple feedback about an operation in a non-intrusive way, without requiring user interaction or taking focus away from the current activity. Toasts are ideal for displaying brief messages like "Saved successfully," "Network error," or "Item added to cart."</p>
+            <p>Key characteristics of a Toast:</p>
+            <ul>
+                <li><strong>Non-interactive:</strong> Users cannot click on a Toast message.</li>
+                <li><strong>Temporary:</strong> It appears for a short duration (<code>LENGTH_SHORT</code> or <code>LENGTH_LONG</code>) and then fades away.</li>
+                <li><strong>Non-blocking:</strong> It does not block user interaction with the current activity.</li>
+                <li><strong>Position:</strong> By default, it appears at the bottom of the screen, but its position can be customized.</li>
+            </ul>
+
+            <h3>Android Application: Factorial Calculator with AlertDialog and Toast</h3>
+            <p>This application will use an <code>AlertDialog</code> to get a number input from the user, calculate its factorial, and then display the result using a <code>Toast</code> message.</p>
+
+            <h4>1. <code>activity_main.xml</code> (Layout File):</h4>
+            <pre><code class="language-xml">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    &lt;Button
+        android:id="@+id/buttonShowDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calculate Factorial"/>
+
+&lt;/LinearLayout>
+            </code></pre>
+
+            <h4>2. <code>MainActivity.java</code> (Java Code):</h4>
+            <pre><code class="language-java">
+package com.example.factorialcalculator;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.text.InputType;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    private Button buttonShowDialog;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        buttonShowDialog = findViewById(R.id.buttonShowDialog);
+        buttonShowDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFactorialDialog();
+            }
+        });
+    }
+
+    private void showFactorialDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Calculate Factorial");
+
+        // Set up the input
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        input.setHint("Enter a non-negative integer");
+        builder.setView(input);
+
+        // Set up the buttons
+        builder.setPositiveButton("Calculate", (dialog, which) -> {
+            String numberStr = input.getText().toString().trim();
+            if (numberStr.isEmpty()) {
+                Toast.makeText(MainActivity.this, "Please enter a number", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            try {
+                int number = Integer.parseInt(numberStr);
+                if (number < 0) {
+                    Toast.makeText(MainActivity.this, "Please enter a non-negative number", Toast.LENGTH_SHORT).show();
+                } else {
+                    long factorial = calculateFactorial(number);
+                    Toast.makeText(MainActivity.this, "Factorial of " + number + " is: " + factorial, Toast.LENGTH_LONG).show();
+                }
+            } catch (NumberFormatException e) {
+                Toast.makeText(MainActivity.this, "Invalid number format", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+
+        builder.show();
+    }
+
+    private long calculateFactorial(int n) {
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+        long result = 1;
+        for (int i = 2; i <= n; i++) {
+            result *= i;
+        }
+        return result;
+    }
+}
+            </code></pre>
+        </div>
+    </div>
+</body>
+</html>

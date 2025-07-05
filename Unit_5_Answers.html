@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 5: UI Fragments, Menus and Dialogs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --text-color: #333;
+            --bg-color: #f5f5f5;
+            --card-bg-color: #fff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        .card {
+            background-color: var(--card-bg-color);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        h3 {
+            color: #444;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        strong {
+            font-weight: 600;
+        }
+        ol, ul {
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3a7ac0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Unit 5: UI Fragments, Menus and Dialogs</h1>
+
+        <div class="card">
+            <h2>Why is fragment needed in android application? How can a fragment be added to an activity?</h2>
+            <img src="Screenshot From 2025-06-30 04-39-40.png" alt="Question 14">
+            <h3>Why Fragments are Needed:</h3>
+            <p>Fragments are a way of modularizing your UI. They allow you to break up your activity's layout into reusable components. This is especially useful for creating flexible UIs that can adapt to different screen sizes.</p>
+            <h3>Adding a Fragment to an Activity:</h3>
+            <p>You can add a fragment to an activity in two ways:</p>
+            <ul>
+                <li><strong>Statically:</strong> You can add a fragment to an activity's layout file using the <code>&lt;fragment></code> tag.</li>
+                <li><strong>Dynamically:</strong> You can add a fragment to an activity at runtime using the <code>FragmentManager</code>.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>What is menu? Develop an android application to create a popup menu having menu item "Edit", "Copy", "Paste", "Redo" and "Undo.".</h2>
+            <img src="Screenshot From 2025-06-30 04-40-16.png" alt="Question 15">
+            <h3>What is a Menu:</h3>
+            <p>A menu is a UI component that displays a list of options to the user. Android provides several types of menus, including options menus, context menus, and popup menus.</p>
+            <h3>Popup Menu Example:</h3>
+            <h4>1. Create a menu resource file (e.g., <code>res/menu/popup_menu.xml</code>):</h4>
+            <pre><code class="language-xml">
+&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;menu xmlns:android="http://schemas.android.com/apk/res/android">
+    &lt;item
+        android:id="@+id/menu_edit"
+        android:title="Edit" />
+    &lt;item
+        android:id="@+id/menu_copy"
+        android:title="Copy" />
+    &lt;item
+        android:id="@+id/menu_paste"
+        android:title="Paste" />
+    &lt;item
+        android:id="@+id/menu_redo"
+        android:title="Redo" />
+    &lt;item
+        android:id="@+id/menu_undo"
+        android:title="Undo" />
+&lt;/menu>
+            </code></pre>
+            <h4>2. In your activity, create and show the popup menu:</h4>
+            <pre><code class="language-java">
+Button button = findViewById(R.id.show_popup_menu_button);
+button.setOnClickListener(v -> {
+    PopupMenu popup = new PopupMenu(this, v);
+    popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
+    popup.setOnMenuItemClickListener(item -> {
+        // Handle menu item clicks
+        return true;
+    });
+    popup.show();
+});
+            </code></pre>
+        </div>
+
+        <div class="card">
+            <h2>What are the uses of fragments? How fragments are differing from activity?</h2>
+            <img src="Screenshot From 2025-06-30 04-40-08.png" alt="Question 14">
+            <h3>Uses of Fragments:</h3>
+            <ul>
+                <li>Creating flexible and reusable UI components.</li>
+                <li>Building multi-pane layouts for tablets.</li>
+                <li>Managing the UI of a single screen in a more modular way.</li>
+            </ul>
+            <h3>Difference between Activity and Fragment:</h3>
+            <p>An activity is a single, focused thing that a user can do. A fragment is a portion of a user interface in an activity. An activity can have multiple fragments, but a fragment must be hosted by an activity.</p>
+        </div>
+
+        <div class="card">
+            <h2>What is the difference between activity and fragment? Develop an android application to create a user interface for input length, width, and height of a Rectangular box and Button for Volume in one Fragment when the button is clicked then these input data are passed to the second fragment and calculate the volume of the Rectangular box and display the result in TextView.</h2>
+            <img src="Screenshot From 2025-06-30 04-40-01.png" alt="Question 14">
+            <p>This question is similar to the previous one, but with a practical example. The implementation would involve creating two fragments, one for input and one for displaying the result. The data would be passed between the fragments using a shared ViewModel or by using fragment arguments.</p>
+        </div>
+
+        <div class="card">
+            <h2>Develop an android application to display an alert dialog box.</h2>
+            <img src="Screenshot From 2025-06-30 04-40-08.png" alt="Question 15">
+            <pre><code class="language-java">
+AlertDialog.Builder builder = new AlertDialog.Builder(this);
+builder.setTitle("Alert");
+builder.setMessage("This is an alert dialog.");
+builder.setPositiveButton("OK", (dialog, which) -> {
+    // Handle OK button click
+});
+builder.setNegativeButton("Cancel", (dialog, which) -> {
+    // Handle Cancel button click
+});
+AlertDialog dialog = builder.create();
+dialog.show();
+            </code></pre>
+        </div>
+
+        <div class="card">
+            <h2>Develop an android application to calculate simple interest using a customize dialog box.</h2>
+            <img src="Screenshot From 2025-06-30 04-39-40.png" alt="Question 19">
+            <p>This would involve creating a custom layout for the dialog with EditTexts for principal, rate, and time. The simple interest would be calculated and displayed in a TextView within the dialog or passed back to the activity.</p>
+        </div>
+    </div>
+</body>
+</html>

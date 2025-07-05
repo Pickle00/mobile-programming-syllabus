@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 7: Advance Android Concepts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --text-color: #333;
+            --bg-color: #f5f5f5;
+            --card-bg-color: #fff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        .card {
+            background-color: var(--card-bg-color);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        h3 {
+            color: #444;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        strong {
+            font-weight: 600;
+        }
+        ol, ul {
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3a7ac0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Unit 7: Advance Android Concepts</h1>
+
+        <div class="card">
+            <h2>Provided that a SQLite database named "College" with a table named Student with the following columns (Roll as Integer, Name as Text and Address as Text). Develop an android application to connect to the database and insert five student records and display the student information.</h2>
+            <img src="Screenshot From 2025-06-30 04-39-40.png" alt="Question 18">
+            <p>This would involve creating a SQLiteOpenHelper class to manage the database. You would then use this class to insert and retrieve the student records.</p>
+        </div>
+
+        <div class="card">
+            <h2>What are different data types supported by SQLite? How to decode JSON data in an android application? Explain with a suitable example.</h2>
+            <img src="Screenshot From 2025-06-30 04-40-01.png" alt="Question 16">
+            <h3>SQLite Data Types:</h3>
+            <ul>
+                <li>NULL</li>
+                <li>INTEGER</li>
+                <li>REAL</li>
+                <li>TEXT</li>
+                <li>BLOB</li>
+            </ul>
+            <h3>Decoding JSON:</h3>
+            <p>You can use the built-in <code>org.json</code> library or a third-party library like Gson or Moshi to decode JSON data.</p>
+        </div>
+
+        <div class="card">
+            <h2>Provided that a MySQL database named "Bank" with table named Customer with following columns (account_no, name, account_type and amount). Develop an android application to connect database remotely and display the Customer details in ListView whose deposit amount is greater than 5000.</h2>
+            <img src="Screenshot From 2025-06-30 04-40-16.png" alt="Question 19">
+            <p>This would involve setting up a web service to expose the data from the MySQL database. The Android application would then connect to this web service to retrieve the data and display it in a ListView.</p>
+        </div>
+
+        <div class="card">
+            <h2>Explain the procedure for generating Google map API key for displaying Google map? Develop an android application to display the Google map with marker TRIBHUVAN UNIVERSITY.</h2>
+            <img src="Screenshot From 2025-06-30 04-40-16.png" alt="Question 20">
+            <p>To generate a Google Maps API key, you need to go to the Google Cloud Platform Console, create a new project, and enable the Maps SDK for Android. You will then be able to create an API key.</p>
+        </div>
+
+        <div class="card">
+            <h2>Develop an android application to demonstrate the retrieval of content from a remote server.</h2>
+            <img src="Screenshot From 2025-06-30 04-40-08.png" alt="Question 19">
+            <p>This would involve using a networking library like Volley or Retrofit to make a network request to a remote server and display the response in the UI.</p>
+        </div>
+
+        <div class="card">
+            <h2>Why we use API in android? Provided that SQLite database named "Hospital" with table named Doctor with the following columns (Did as Integer, Dname as Text, and Specialization as Text and Experience as Real). Develop an android application to connect to the database and insert records of Doctor and display the Doctor information whose experience is less than 5.5 years.</h2>
+            <img src="Screenshot From 2025-06-30 04-40-01.png" alt="Question 19">
+            <h3>Why We Use APIs:</h3>
+            <p>APIs (Application Programming Interfaces) are used to abstract away the complexity of underlying implementations. They provide a set of well-defined interfaces that allow different components to communicate with each other.</p>
+            <h3>SQLite Example:</h3>
+            <p>This is another SQLite example, similar to the first question in this unit.</p>
+        </div>
+
+        <div class="card">
+            <h2>How to generate a signed APK? Write a program to locate the user's current location (write only java and manifest file).</h2>
+            <img src="Screenshot From 2025-06-30 04-40-08.png" alt="Question 20">
+            <h3>Generating a Signed APK:</h3>
+            <p>You can generate a signed APK using Android Studio's "Generate Signed Bundle / APK" wizard. This will guide you through the process of creating a keystore and signing your APK.</p>
+            <h3>Getting User Location:</h3>
+            <p>This would involve using the Fused Location Provider API to get the user's current location. You would need to request the necessary permissions in the manifest file.</p>
+        </div>
+
+        <div class="card">
+            <h2>What does android APK file contain? Develop an android application with a context menu having menu items "Red", "Yellow", "Green", "Black" and "Blue" etc. and change the background color of the layout when the user selects a menu item accordingly.</h2>
+            <img src="Screenshot From 2025-06-30 04-40-01.png" alt="Question 20">
+            <h3>APK File Contents:</h3>
+            <ul>
+                <li><code>AndroidManifest.xml</code></li>
+                <li><code>classes.dex</code></li>
+                <li><code>resources.arsc</code></li>
+                <li><code>res/</code></li>
+                <li><code>lib/</code></li>
+                <li><code>assets/</code></li>
+                <li><code>META-INF/</code></li>
+            </ul>
+            <h3>Context Menu Example:</h3>
+            <p>This would involve creating a context menu and registering it for a view. When the user long-presses the view, the context menu will appear. You would then handle the menu item clicks to change the background color of the layout.</p>
+        </div>
+    </div>
+</body>
+</html>

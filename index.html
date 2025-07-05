@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Programming Units - Navigation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #357abd;
+            --accent-color: #f39c12;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --card-bg-color: #fff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --hover-shadow: rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .units-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .unit-card {
+            background: var(--card-bg-color);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px var(--shadow-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .unit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        .unit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px var(--hover-shadow);
+        }
+
+        .unit-number {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .unit-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .unit-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .unit-topics {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .unit-topics li {
+            padding: 0.3rem 0;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .unit-topics li::before {
+            content: '▸';
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        .unit-link {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .unit-link:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            transform: scale(1.05);
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer h3 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .units-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .unit-card {
+                padding: 1.5rem;
+            }
+        }
+
+        .android-icon {
+            color: #3DDC84;
+        }
+
+        .ios-icon {
+            color: #007AFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📱 Mobile Programming Units</h1>
+            <p>Comprehensive study materials for Android & iOS development</p>
+        </div>
+
+        <div class="units-grid">
+            <div class="unit-card">
+                <div class="unit-number">Unit 1</div>
+                <h2 class="unit-title">Introduction to Mobile and Mobile Programming</h2>
+                <p class="unit-description">Fundamentals of mobile devices and programming approaches</p>
+                <ul class="unit-topics">
+                    <li>Mobile device categories</li>
+                    <li>Programming languages for mobile</li>
+                    <li>Development approaches</li>
+                    <li>Platform comparison</li>
+                </ul>
+                <a href="Unit_1_Answers.html" class="unit-link">View Unit 1</a>
+            </div>
+
+            <div class="unit-card">
+                <div class="unit-number">Unit 2</div>
+                <h2 class="unit-title"><span class="android-icon">🤖</span> Introduction to Android Programming</h2>
+                <p class="unit-description">Android architecture and basic programming concepts</p>
+                <ul class="unit-topics">
+                    <li>Android architecture layers</li>
+                    <li>Directory structure</li>
+                    <li>String resources</li>
+                    <li>Development environment</li>
+                </ul>
+                <a href="Unit_2_Answers.html" class="unit-link">View Unit 2</a>
+            </div>
+
+            <div class="unit-card">
+                <div class="unit-number">Unit 3</div>
+                <h2 class="unit-title">🎨 Designing the User Interface</h2>
+                <p class="unit-description">UI components, layouts, and event handling</p>
+                <ul class="unit-topics">
+                    <li>Event handling methods</li>
+                    <li>Layout attributes</li>
+                    <li>UI controls (Spinner, Toast)</li>
+                    <li>Calculator applications</li>
+                </ul>
+                <a href="Unit_3_Answers.html" class="unit-link">View Unit 3</a>
+            </div>
+
+            <div class="unit-card">
+                <div class="unit-number">Unit 4</div>
+                <h2 class="unit-title">⚡ Android Activity</h2>
+                <p class="unit-description">Activity lifecycle and inter-activity communication</p>
+                <ul class="unit-topics">
+                    <li>Finding view elements</li>
+                    <li>Dialog boxes</li>
+                    <li>Intent handling</li>
+                    <li>Data passing between activities</li>
+                </ul>
+                <a href="Unit_4_Answers.html" class="unit-link">View Unit 4</a>
+            </div>
+
+            <div class="unit-card">
+                <div class="unit-number">Unit 5</div>
+                <h2 class="unit-title">🧩 UI Fragments, Menus and Dialogs</h2>
+                <p class="unit-description">Advanced UI components and modular design</p>
+                <ul class="unit-topics">
+                    <li>Fragment lifecycle</li>
+                    <li>Menu types (Popup, Context)</li>
+                    <li>Alert dialogs</li>
+                    <li>Fragment communication</li>
+                </ul>
+                <a href="Unit_5_Answers.html" class="unit-link">View Unit 5</a>
+            </div>
+
+            <div class="unit-card">
+                <div class="unit-number">Unit 6</div>
+                <h2 class="unit-title">📋 ListView, GridView and RecyclerView</h2>
+                <p class="unit-description">Data display and list management components</p>
+                <ul class="unit-topics">
+                    <li>ListView vs RecyclerView</li>
+                    <li>JSON data handling</li>
+                    <li>Custom adapters</li>
+                    <li>GridView implementations</li>
+                </ul>
+                <a href="Unit_6_Answers.html" class="unit-link">View Unit 6</a>
+            </div>
+
+            <div class="unit-card">
+                <div class="unit-number">Unit 7</div>
+                <h2 class="unit-title">🚀 Advanced Android Concepts</h2>
+                <p class="unit-description">Database integration, networking, and advanced features</p>
+                <ul class="unit-topics">
+                    <li>SQLite database operations</li>
+                    <li>Remote server connectivity</li>
+                    <li>Google Maps integration</li>
+                    <li>Location services</li>
+                </ul>
+                <a href="Unit_7_Answers.html" class="unit-link">View Unit 7</a>
+            </div>
+
+            <div class="unit-card">
+                <div class="unit-number">Unit 8</div>
+                <h2 class="unit-title"><span class="ios-icon">🍎</span> Introduction to iOS Programming</h2>
+                <p class="unit-description">iOS development fundamentals with Swift</p>
+                <ul class="unit-topics">
+                    <li>iOS UI controls</li>
+                    <li>Storyboard design</li>
+                    <li>View hierarchy</li>
+                    <li>Swift programming basics</li>
+                </ul>
+                <a href="Unit_8_Answers.html" class="unit-link">View Unit 8</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>📚 Study Guide</h3>
+            <p>This comprehensive collection covers both Android and iOS mobile development concepts, from basic UI design to advanced database integration and networking. Each unit includes detailed explanations, code examples, and practical applications.</p>
+        </div>
+    </div>
+</body>
+</html>
