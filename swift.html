@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swift Programming Basics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .code-block {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+    <div class="max-w-4xl mx-auto px-8 py-12">
+        <!-- Header -->
+        <header class="text-center mb-16">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Swift Programming Basics</h1>
+            <p class="text-lg text-gray-600">Learn the fundamentals of Swift programming language</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="space-y-16">
+            <!-- Section 1: Variables and Data Types -->
+            <section>
+                <h2 class="text-3xl font-semibold text-gray-900 mb-8">1. Variables and Data Types</h2>
+                <div class="space-y-6">
+                    <p class="text-gray-700 leading-relaxed text-lg">
+                        In Swift, you can declare variables using <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">var</code> 
+                        for mutable values and <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">let</code> for constants.
+                        Swift supports various data types including Int, Double, String, Bool, and Character.
+                    </p>
+                    
+                    <h3 class="text-xl font-medium text-gray-800 mt-8 mb-4">Key Points:</h3>
+                    <ul class="space-y-2 text-gray-700 ml-6">
+                        <li class="list-disc">Use <strong>var</strong> for variables that can change</li>
+                        <li class="list-disc">Use <strong>let</strong> for constants that cannot change</li>
+                        <li class="list-disc">Swift can infer types automatically</li>
+                        <li class="list-disc">You can explicitly specify types using colon syntax</li>
+                        <li class="list-disc">Optional types can hold a value or nil</li>
+                    </ul>
+
+                    <h3 class="text-xl font-medium text-gray-800 mt-8 mb-4">Example Code:</h3>
+                </div>
+            </section>
+
+            <!-- Variables Code Block -->
+            <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-blue-500">
+                <h4 class="font-medium text-gray-800 mb-4">variables.swift</h4>
+                <pre class="code-block font-mono text-gray-800 overflow-x-auto"><code>// Variables and Data Types in Swift
+
+// Integer variables
+var age: Int = 25
+let birthYear: Int = 1998
+
+// Double and Float variables
+var height: Double = 5.9
+let pi: Float = 3.14159
+
+// String variables
+var name: String = "John Doe"
+let greeting: String = "Hello, World!"
+
+// Boolean variables
+var isStudent: Bool = true
+let isWorking: Bool = false
+
+// Character variable
+let grade: Character = "A"
+
+// Type inference (Swift can automatically determine the type)
+var city = "New York"        // Inferred as String
+var temperature = 72.5       // Inferred as Double
+var count = 10              // Inferred as Int
+var isRaining = false       // Inferred as Bool
+
+// Optional variables (can hold a value or nil)
+var middleName: String? = "Michael"
+var nickname: String? = nil
+
+// Constants vs Variables
+let constantValue = 100     // Cannot be changed after initialization
+var variableValue = 50      // Can be modified later
+variableValue = 75          // This is allowed
+
+print("Variables and data types initialized successfully!")</code></pre>
+            </div>
+
+            <!-- Section 2: Printing Variables -->
+            <section>
+                <h2 class="text-3xl font-semibold text-gray-900 mb-8">2. Printing Variables</h2>
+                <div class="space-y-6">
+                    <p class="text-gray-700 leading-relaxed text-lg">
+                        Swift uses the <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">print()</code> function 
+                        to output values to the console. You can print variables directly or use string interpolation 
+                        with <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">\(variable)</code> syntax.
+                    </p>
+                    
+                    <h3 class="text-xl font-medium text-gray-800 mt-8 mb-4">Printing Methods:</h3>
+                    <ul class="space-y-2 text-gray-700 ml-6">
+                        <li class="list-disc"><strong>Basic printing:</strong> print(variable)</li>
+                        <li class="list-disc"><strong>String interpolation:</strong> print("Value is \(variable)")</li>
+                        <li class="list-disc"><strong>Multiple values:</strong> print(var1, var2, separator: " | ")</li>
+                        <li class="list-disc"><strong>Custom terminator:</strong> print("text", terminator: " ")</li>
+                        <li class="list-disc"><strong>Debug printing:</strong> debugPrint() for detailed info</li>
+                    </ul>
+
+                    <h3 class="text-xl font-medium text-gray-800 mt-8 mb-4">Example Code:</h3>
+                </div>
+            </section>
+
+            <!-- Printing Code Block -->
+            <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-green-500">
+                <h4 class="font-medium text-gray-800 mb-4">printing.swift</h4>
+                <pre class="code-block font-mono text-gray-800 overflow-x-auto"><code>// Printing Variables in Swift
+
+// Basic variable declarations
+let name = "Alice"
+let age = 28
+let height = 5.6
+let isEmployed = true
+
+// Basic printing
+print("Hello, World!")
+print(name)
+print(age)
+
+// String interpolation - embedding variables in strings
+print("My name is \(name)")
+print("I am \(age) years old")
+print("My height is \(height) feet")
+print("Employment status: \(isEmployed)")
+
+// Multiple variables in one print statement
+print("Name: \(name), Age: \(age), Height: \(height)")
+
+// Printing with separators
+print("Apple", "Banana", "Cherry", separator: " | ")
+
+// Printing with custom terminator (default is newline)
+print("This is on the same line", terminator: " ")
+print("as this text")
+
+// Printing expressions
+let a = 10
+let b = 20
+print("The sum of \(a) and \(b) is \(a + b)")
+
+// Printing formatted numbers
+let price = 19.99
+print("Price: $\(String(format: "%.2f", price))")
+
+// Printing boolean values
+print("Is employed? \(isEmployed ? "Yes" : "No")")
+
+// Printing arrays
+let colors = ["Red", "Green", "Blue"]
+print("Colors: \(colors)")
+
+// Debug printing (shows more detailed information)
+debugPrint("Debug info: \(name)")</code></pre>
+            </div>
+
+            <!-- Section 3: Arrays -->
+            <section>
+                <h2 class="text-3xl font-semibold text-gray-900 mb-8">3. Arrays</h2>
+                <div class="space-y-6">
+                    <p class="text-gray-700 leading-relaxed text-lg">
+                        Arrays in Swift are ordered collections that can store multiple values of the same type. 
+                        You can create arrays using square brackets <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">[]</code> 
+                        or the Array initializer.
+                    </p>
+                    
+                    <h3 class="text-xl font-medium text-gray-800 mt-8 mb-4">Array Operations:</h3>
+                    <ul class="space-y-2 text-gray-700 ml-6">
+                        <li class="list-disc"><strong>Creation:</strong> Empty arrays, arrays with values, repeated values</li>
+                        <li class="list-disc"><strong>Access:</strong> Using index [0], first, last properties</li>
+                        <li class="list-disc"><strong>Modification:</strong> append(), insert(), remove() methods</li>
+                        <li class="list-disc"><strong>Properties:</strong> count, isEmpty for array information</li>
+                        <li class="list-disc"><strong>Iteration:</strong> Using for loops to traverse elements</li>
+                    </ul>
+
+                    <h3 class="text-xl font-medium text-gray-800 mt-8 mb-4">Example Code:</h3>
+                </div>
+            </section>
+
+            <!-- Arrays Code Block -->
+            <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-purple-500">
+                <h4 class="font-medium text-gray-800 mb-4">arrays.swift</h4>
+                <pre class="code-block font-mono text-gray-800 overflow-x-auto"><code>// Arrays in Swift
+
+// 1. Creating empty arrays
+var emptyIntArray: [Int] = []
+var anotherEmptyArray = [String]()
+var explicitArray: Array<Double> = Array()
+
+// 2. Creating arrays with initial values
+let fruits = ["Apple", "Banana", "Orange", "Grape"]
+var numbers = [1, 2, 3, 4, 5]
+let mixedNumbers: [Double] = [1.5, 2.7, 3.14, 4.0]
+
+// 3. Creating arrays with repeated values
+let zeros = Array(repeating: 0, count: 5)  // [0, 0, 0, 0, 0]
+let defaultNames = Array(repeating: "Unknown", count: 3)
+
+// 4. Array properties
+print("Fruits array has \(fruits.count) items")
+print("Is numbers array empty? \(numbers.isEmpty)")
+
+// 5. Accessing array elements
+print("First fruit: \(fruits[0])")
+print("Last fruit: \(fruits[fruits.count - 1])")
+print("Second number: \(numbers[1])")
+
+// Safe access using optional binding
+if fruits.indices.contains(10) {
+    print("Fruit at index 10: \(fruits[10])")
+} else {
+    print("Index 10 is out of bounds")
+}
+
+// 6. Modifying arrays (only var arrays can be modified)
+numbers.append(6)                    // Add single element
+numbers.append(contentsOf: [7, 8])   // Add multiple elements
+numbers.insert(0, at: 0)             // Insert at specific index
+
+print("Modified numbers: \(numbers)")
+
+// 7. Removing elements
+numbers.remove(at: 0)                // Remove element at index
+numbers.removeLast()                 // Remove last element
+print("After removal: \(numbers)")
+
+// 8. Array iteration
+print("\nAll fruits:")
+for fruit in fruits {
+    print("- \(fruit)")
+}
+
+// 9. Multi-dimensional arrays
+let matrix: [[Int]] = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+print("\nMatrix:")
+for row in matrix {
+    print(row)
+}
+
+// 10. Array methods
+let evenNumbers = [2, 4, 6, 8, 10]
+print("Sum of even numbers: \(evenNumbers.reduce(0, +))")
+print("First even number > 5: \(evenNumbers.first { $0 > 5 } ?? 0)")</code></pre>
+            </div>
+
+            <!-- Section 4: User Input -->
+            <section>
+                <h2 class="text-3xl font-semibold text-gray-900 mb-8">4. Taking User Input</h2>
+                <div class="space-y-6">
+                    <p class="text-gray-700 leading-relaxed text-lg">
+                        Swift uses <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">readLine()</code> 
+                        to get input from the user. Since readLine() returns an optional string, you need to handle 
+                        the optional and convert to appropriate data types when needed.
+                    </p>
+                    
+                    <h3 class="text-xl font-medium text-gray-800 mt-8 mb-4">Input Handling:</h3>
+                    <ul class="space-y-2 text-gray-700 ml-6">
+                        <li class="list-disc"><strong>String input:</strong> Direct use of readLine()</li>
+                        <li class="list-disc"><strong>Number input:</strong> Convert using Int() or Double()</li>
+                        <li class="list-disc"><strong>Boolean input:</strong> Compare strings for yes/no responses</li>
+                        <li class="list-disc"><strong>Validation:</strong> Check for valid input and handle errors</li>
+                        <li class="list-disc"><strong>Multiple inputs:</strong> Use loops to collect several values</li>
+                    </ul>
+
+                    <h3 class="text-xl font-medium text-gray-800 mt-8 mb-4">Example Code:</h3>
+                </div>
+            </section>
+
+            <!-- User Input Code Block -->
+            <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-orange-500">
+                <h4 class="font-medium text-gray-800 mb-4">user-input.swift</h4>
+                <pre class="code-block font-mono text-gray-800 overflow-x-auto"><code>// Taking User Input in Swift
+
+import Foundation
+
+print("=== User Input Examples ===\n")
+
+// 1. Taking String input
+print("Enter your name: ", terminator: "")
+if let userName = readLine() {
+    print("Hello, \(userName)!")
+} else {
+    print("No input received")
+}
+
+// 2. Taking Integer input
+print("\nEnter your age: ", terminator: "")
+if let ageInput = readLine(), let age = Int(ageInput) {
+    print("You are \(age) years old")
+    
+    // Age-based logic
+    if age >= 18 {
+        print("You are an adult")
+    } else {
+        print("You are a minor")
+    }
+} else {
+    print("Invalid age entered")
+}
+
+// 3. Taking Double input
+print("\nEnter your height in feet: ", terminator: "")
+if let heightInput = readLine(), let height = Double(heightInput) {
+    let heightInCm = height * 30.48
+    print("Your height is \(String(format: "%.2f", heightInCm)) cm")
+} else {
+    print("Invalid height entered")
+}
+
+// 4. Taking Boolean-like input
+print("\nAre you a student? (yes/no): ", terminator: "")
+if let studentInput = readLine() {
+    let isStudent = studentInput.lowercased() == "yes" || studentInput.lowercased() == "y"
+    print("Student status: \(isStudent)")
+}
+
+// 5. Taking multiple inputs and storing in array
+print("\nEnter 3 favorite colors (press Enter after each):")
+var colors: [String] = []
+
+for i in 1...3 {
+    print("Color \(i): ", terminator: "")
+    if let color = readLine(), !color.isEmpty {
+        colors.append(color)
+    }
+}
+
+print("\nYour favorite colors are:")
+for (index, color) in colors.enumerated() {
+    print("\(index + 1). \(color)")
+}
+
+// 6. Input validation example
+print("\nEnter a number between 1 and 10: ", terminator: "")
+if let numberInput = readLine(), let number = Int(numberInput) {
+    if number >= 1 && number <= 10 {
+        print("Great! You entered \(number)")
+        
+        // Print multiplication table for the number
+        print("\nMultiplication table for \(number):")
+        for i in 1...10 {
+            print("\(number) × \(i) = \(number * i)")
+        }
+    } else {
+        print("Number is out of range!")
+    }
+} else {
+    print("Invalid number format!")
+}
+
+// 7. Character input
+print("\nEnter your grade (A, B, C, D, F): ", terminator: "")
+if let gradeInput = readLine(), let firstChar = gradeInput.first {
+    let grade = Character(firstChar.uppercased())
+    
+    switch grade {
+    case "A":
+        print("Excellent!")
+    case "B":
+        print("Good job!")
+    case "C":
+        print("Average")
+    case "D":
+        print("Below average")
+    case "F":
+        print("Failed")
+    default:
+        print("Invalid grade")
+    }
+}
+
+print("\n=== End of Input Examples ===")</code></pre>
+            </div>
+
+            <!-- Section 5: For Loops -->
+            <section>
+                <h2 class="text-3xl font-semibold text-gray-900 mb-8">5. For Loops and Pattern Printing</h2>
+                <div class="space-y-6">
+                    <p class="text-gray-700 leading-relaxed text-lg">
+                        A for loop in Swift repeats a block of code for each item in a sequence. 
+                        It's one of the most fundamental control structures in programming.
+                    </p>
+                    
+                    <h3 class="text-2xl font-medium text-gray-800 mt-8 mb-6">How For Loops Work - Detailed Explanation</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-xl font-medium text-gray-800 mb-4">Basic Syntax:</h4>
+                            <div class="bg-gray-100 p-4 rounded font-mono text-sm">
+                                <code>for item in sequence { /* code to execute */ }</code>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-xl font-medium text-gray-800 mb-4">Loop Execution Flow:</h4>
+                            <ol class="space-y-3 text-gray-700 ml-6">
+                                <li class="list-decimal"><strong>Initialization:</strong> The loop variable is set to the first value in the sequence</li>
+                                <li class="list-decimal"><strong>Condition Check:</strong> Swift checks if there are more items in the sequence</li>
+                                <li class="list-decimal"><strong>Execute Body:</strong> All code inside the loop braces { } is executed</li>
+                                <li class="list-decimal"><strong>Increment/Next:</strong> Move to the next item in the sequence</li>
+                                <li class="list-decimal"><strong>Repeat:</strong> Go back to step 2 and repeat until no more items</li>
+                            </ol>
+                        </div>
+
+                        <div>
+                            <h4 class="text-xl font-medium text-gray-800 mb-4">Types of For Loops:</h4>
+                            <ul class="space-y-3 text-gray-700 ml-6">
+                                <li class="list-disc"><strong>Range-based:</strong> <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">for i in 1...5</code> (includes 5)</li>
+                                <li class="list-disc"><strong>Half-open range:</strong> <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">for i in 1..<5</code> (excludes 5)</li>
+                                <li class="list-disc"><strong>Array iteration:</strong> <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">for item in array</code></li>
+                                <li class="list-disc"><strong>Stride:</strong> <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">for i in stride(from: 0, to: 10, by: 2)</code></li>
+                                <li class="list-disc"><strong>Reverse:</strong> <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">for i in (1...5).reversed()</code></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="text-xl font-medium text-gray-800 mb-4">Memory and Performance:</h4>
+                            <ul class="space-y-2 text-gray-700 ml-6">
+                                <li class="list-disc">Loop variable exists only within the loop scope</li>
+                                <li class="list-disc">Each iteration gets a fresh copy of the variable</li>
+                                <li class="list-disc">Variables declared inside the loop are recreated each iteration</li>
+                                <li class="list-disc">For loops are optimized by the Swift compiler for performance</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-medium text-gray-800 mt-8 mb-4">Example Code:</h3>
+                </div>
+            </section>
+
+            <!-- For Loops Code Block -->
+            <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-red-500">
+                <h4 class="font-medium text-gray-800 mb-4">for-loops.swift</h4>
+                <pre class="code-block font-mono text-gray-800 overflow-x-auto"><code>// For Loops and Pattern Printing in Swift
+
+print("=== For Loop Examples ===\n")
+
+// 1. Basic range-based for loop
+print("1. Counting from 1 to 5:")
+for i in 1...5 {
+    print("Count: \(i)")
+}
+
+// 2. Half-open range (excludes the upper bound)
+print("\n2. Half-open range (1 to 4):")
+for i in 1..<5 {
+    print("Number: \(i)")
+}
+
+// 3. Iterating through an array
+print("\n3. Iterating through fruits:")
+let fruits = ["Apple", "Banana", "Cherry", "Date"]
+for fruit in fruits {
+    print("Fruit: \(fruit)")
+}
+
+// 4. Iterating with index
+print("\n4. Fruits with index:")
+for (index, fruit) in fruits.enumerated() {
+    print("\(index + 1). \(fruit)")
+}
+
+// 5. Reverse iteration
+print("\n5. Counting backwards:")
+for i in (1...5).reversed() {
+    print("Countdown: \(i)")
+}
+
+// 6. Using stride for custom increments
+print("\n6. Even numbers using stride:")
+for i in stride(from: 2, through: 10, by: 2) {
+    print("Even: \(i)")
+}
+
+// 7. Nested loops for patterns
+print("\n=== Pattern Printing ===\n")
+
+// Pattern 1: Right triangle of stars
+print("Pattern 1 - Right Triangle:")
+for i in 1...5 {
+    for _ in 1...i {
+        print("*", terminator: "")
+    }
+    print() // New line
+}
+
+// Pattern 2: Inverted right triangle
+print("\nPattern 2 - Inverted Triangle:")
+for i in (1...5).reversed() {
+    for _ in 1...i {
+        print("*", terminator: "")
+    }
+    print()
+}
+
+// Pattern 3: Number pyramid
+print("\nPattern 3 - Number Pyramid:")
+for i in 1...5 {
+    // Print spaces
+    for _ in 1...(5-i) {
+        print(" ", terminator: "")
+    }
+    // Print numbers
+    for j in 1...i {
+        print("\(j) ", terminator: "")
+    }
+    print()
+}
+
+// Pattern 4: Diamond pattern
+print("\nPattern 4 - Diamond:")
+let size = 5
+
+// Upper half (including middle)
+for i in 1...size {
+    // Print spaces
+    for _ in 1...(size-i) {
+        print(" ", terminator: "")
+    }
+    // Print stars
+    for _ in 1...(2*i-1) {
+        print("*", terminator: "")
+    }
+    print()
+}
+
+// Lower half
+for i in (1..<size).reversed() {
+    // Print spaces
+    for _ in 1...(size-i) {
+        print(" ", terminator: "")
+    }
+    // Print stars
+    for _ in 1...(2*i-1) {
+        print("*", terminator: "")
+    }
+    print()
+}
+
+// Pattern 5: Multiplication table
+print("\nPattern 5 - Multiplication Table:")
+for i in 1...5 {
+    for j in 1...5 {
+        let product = i * j
+        print(String(format: "%3d", product), terminator: " ")
+    }
+    print()
+}
+
+// 8. Loop control statements
+print("\n=== Loop Control Examples ===\n")
+
+// Using continue
+print("Odd numbers only (using continue):")
+for i in 1...10 {
+    if i % 2 == 0 {
+        continue // Skip even numbers
+    }
+    print("Odd: \(i)")
+}
+
+// Using break
+print("\nStopping at 7 (using break):")
+for i in 1...10 {
+    if i > 7 {
+        break // Stop the loop
+    }
+    print("Number: \(i)")
+}
+
+// 9. Practical example: Finding prime numbers
+print("\nPrime numbers from 2 to 20:")
+for number in 2...20 {
+    var isPrime = true
+    
+    for divisor in 2..<number {
+        if number % divisor == 0 {
+            isPrime = false
+            break
+        }
+    }
+    
+    if isPrime {
+        print("\(number) is prime")
+    }
+}
+
+// 10. Advanced pattern: Pascal's Triangle
+print("\nPattern 6 - Pascal's Triangle:")
+let rows = 5
+for i in 0..<rows {
+    // Print spaces
+    for _ in 0..<(rows - i - 1) {
+        print(" ", terminator: "")
+    }
+    
+    // Calculate and print Pascal's triangle values
+    var value = 1
+    for j in 0...i {
+        print("\(value) ", terminator: "")
+        value = value * (i - j) / (j + 1)
+    }
+    print()
+}
+
+print("\n=== End of For Loop Examples ===")</code></pre>
+            </div>
+
+            <!-- Additional Explanation Section -->
+            <section>
+                <h2 class="text-3xl font-semibold text-gray-900 mb-8">Understanding Loop Mechanics</h2>
+                <div class="space-y-6">
+                    <h3 class="text-xl font-medium text-gray-800 mb-4">Step-by-Step Loop Execution Example:</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Let's trace through <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">for i in 1...3</code>:
+                    </p>
+                    
+                    <div class="space-y-4 ml-6">
+                        <div class="border-l-4 border-blue-200 pl-4">
+                            <p class="font-medium">Iteration 1:</p>
+                            <p class="text-gray-700">i = 1, execute loop body, print "Count: 1"</p>
+                        </div>
+                        <div class="border-l-4 border-blue-200 pl-4">
+                            <p class="font-medium">Iteration 2:</p>
+                            <p class="text-gray-700">i = 2, execute loop body, print "Count: 2"</p>
+                        </div>
+                        <div class="border-l-4 border-blue-200 pl-4">
+                            <p class="font-medium">Iteration 3:</p>
+                            <p class="text-gray-700">i = 3, execute loop body, print "Count: 3"</p>
+                        </div>
+                        <div class="border-l-4 border-gray-200 pl-4">
+                            <p class="font-medium">End:</p>
+                            <p class="text-gray-700">No more values in range, exit loop</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-medium text-gray-800 mt-8 mb-4">Pattern Printing Logic:</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Pattern printing uses nested loops where the outer loop controls rows and inner loops control 
+                        columns or elements within each row. The key is understanding how the loop variables relate 
+                        to the pattern structure.
+                    </p>
+
+                    <h3 class="text-xl font-medium text-gray-800 mt-8 mb-4">Best Practices:</h3>
+                    <ul class="space-y-2 text-gray-700 ml-6">
+                        <li class="list-disc">Use meaningful variable names (row, col instead of i, j)</li>
+                        <li class="list-disc">Keep loop bodies simple and readable</li>
+                        <li class="list-disc">Use appropriate loop types for different scenarios</li>
+                        <li class="list-disc">Consider performance for large datasets</li>
+                        <li class="list-disc">Use break and continue judiciously</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center mt-16 pt-8 border-t border-gray-200">
+            <p class="text-gray-600 text-lg">
+                Practice these concepts by running the Swift code files in Xcode or Swift Playgrounds.
+            </p>
+            <p class="text-gray-500 mt-2">
+                Remember: The best way to learn programming is through hands-on practice!
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
